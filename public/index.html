@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit BRI - Simulasi Perbankan</title>
+    <meta name="description" content="Simulasi aplikasi mobile banking BRI untuk deposit dan tabungan dengan fitur chat admin dan notifikasi">
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Memuat aplikasi...</p>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login-page" class="page hidden">
+            <div class="container">
+                <div class="login-card">
+                    <div class="logo-section">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80'%3E%3Crect width='200' height='80' fill='%23003d82'/%3E%3Ctext x='100' y='45' font-family='Arial' font-size='24' font-weight='bold' fill='white' text-anchor='middle'%3EBRI%3C/text%3E%3C/svg%3E" alt="BRI Logo" class="logo">
+                        <h1>Deposit BRI</h1>
+                        <p>Simulasi Mobile Banking</p>
+                    </div>
+                    
+                    <form id="login-form" class="login-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pin">PIN</label>
+                            <input type="password" id="pin" name="pin" placeholder="Masukkan PIN" maxlength="6" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <span>Masuk</span>
+                        </button>
+                        
+                        <div class="demo-info">
+                            <h3>Demo Account:</h3>
+                            <p>Username: <strong>Siti Aminah</strong></p>
+                            <p>PIN: <strong>112233</strong></p>
+                            <p>Admin Code: <strong>011090</strong></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page hidden">
+            <div class="header">
+                <div class="header-content">
+                    <div class="user-info">
+                        <h2 id="user-name">Selamat Datang</h2>
+                        <p id="user-account">Account Info</p>
+                    </div>
+                    <div class="header-actions">
+                        <button id="notification-btn" class="icon-btn">
+                            <i data-lucide="bell"></i>
+                            <span id="notification-count" class="badge hidden">0</span>
+                        </button>
+                        <button id="chat-btn" class="icon-btn">
+                            <i data-lucide="message-circle"></i>
+                        </button>
+                        <button id="logout-btn" class="icon-btn">
+                            <i data-lucide="log-out"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Balance Cards -->
+                <div class="balance-section">
+                    <div class="balance-card deposit">
+                        <h3>Saldo Deposito</h3>
+                        <p class="balance-amount" id="deposit-balance">Rp 0</p>
+                        <p class="balance-label">Deposito Berjangka</p>
+                    </div>
+                    
+                    <div class="balance-card savings">
+                        <h3>Saldo Tabungan</h3>
+                        <p class="balance-amount" id="savings-balance">Rp 0</p>
+                        <p class="balance-label">Tabungan Reguler</p>
+                    </div>
+                </div>
+
+                <!-- Withdrawal Info -->
+                <div class="withdrawal-info" id="withdrawal-info">
+                    <div class="info-card">
+                        <h3>Informasi Penarikan</h3>
+                        <p id="withdrawal-status">Status penarikan akan ditampilkan di sini</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Access -->
+                <div class="admin-section">
+                    <button id="admin-access-btn" class="btn-secondary">
+                        Akses Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="admin-page" class="page hidden">
+            <div class="header">
+                <div class="header-content">
+                    <h2>Admin Dashboard</h2>
+                    <button id="back-to-dashboard" class="btn-secondary">Kembali</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="admin-grid">
+                    <!-- Balance Management -->
+                    <div class="admin-card">
+                        <h3>Kelola Saldo</h3>
+                        <form id="balance-form">
+                            <select id="user-select" required>
+                                <option value="">Pilih User</option>
+                            </select>
+                            <input type="number" id="deposit-input" placeholder="Saldo Deposito" required>
+                            <input type="number" id="savings-input" placeholder="Saldo Tabungan" required>
+                            <button type="submit" class="btn-primary">Update Saldo</button>
+                        </form>
+                    </div>
+
+                    <!-- Send Notification -->
+                    <div class="admin-card">
+                        <h3>Kirim Notifikasi</h3>
+                        <form id="notification-form">
+                            <select id="notification-user" required>
+                                <option value="">Pilih User</option>
+                            </select>
+                            <textarea id="notification-message" placeholder="Pesan notifikasi" required></textarea>
+                            <button type="submit" class="btn-primary">Kirim Notifikasi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifikasi</h3>
+                <button id="close-notification" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="notification-list" class="notification-list">
+                    <!-- Notifications will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chat-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chat dengan Admin</h3>
+                <button id="close-chat" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="chat-messages" class="chat-messages">
+                    <!-- Messages will be loaded here -->
+                </div>
+                <form id="chat-form" class="chat-form">
+                    <input type="text" id="chat-input" placeholder="Ketik pesan..." required>
+                    <button type="submit" class="btn-primary">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

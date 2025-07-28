@@ -1,0 +1,12 @@
+[deploy]
+  startCommand = "npm run start"
+  
+[build]
+  buildCommand = "npm run build"
+
+[[services]]
+  name = "deposit-bri-app"
+  source = "."
+  
+[environments.production]
+  variables = {}

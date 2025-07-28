@@ -7,6 +7,10 @@ Deposit BRI is a mobile banking simulation application focused on deposit and sa
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+User is non-premium and needs free deployment solutions instead of Replit's premium deployment.
+User is concerned about hidden costs and prefers truly free platforms without upgrade pressure.
+User understands that current Replit URL is development/preview only, not a permanent public domain.
+User recognizes Replit's monetization strategy through deployment restrictions, comparing unfavorably to Lovable's free Vercel integration approach.
 
 ## System Architecture
 
@@ -114,3 +118,42 @@ Preferred communication style: Simple, everyday language.
 - **Monorepo Setup**: Client, server, and shared code in single repository
 - **Shared Schema**: Common TypeScript types and Zod schemas
 - **Path Aliases**: Clean imports with @ prefixes for better organization
+
+## Recent Changes (January 2025)
+
+### Migration and Deployment Setup
+- **Migration Completed**: Successfully migrated from Replit Agent to Replit environment
+- **Database**: PostgreSQL database provisioned and schema applied successfully
+- **Application Status**: Fully functional banking simulation app running on port 5000
+- **Free Deployment Setup**: Added configuration files for free hosting platforms:
+  - `railway.toml` - Railway deployment config
+  - `render.yaml` - Render deployment config  
+  - `koyeb.yaml` - Koyeb deployment config
+  - `netlify.toml` - Netlify deployment config
+  - `DEPLOYMENT_GUIDE.md` - Comprehensive deployment guide
+  - `SOLUSI_DEPLOYMENT_GRATIS.md` - Indonesian deployment guide for free platforms
+  - `.env.example` - Environment variables template
+
+### Deployment Alternatives (Updated January 2025)
+Due to user being non-premium, researched truly free platforms with GitHub integration:
+1. **Cyclic.sh** (New Top Choice) - Permanent free Node.js hosting with GitHub integration
+2. **Railway** - $5/month free credit, reliable full-stack support
+3. **Fly.io** - $5/month allowance, global deployment
+4. **Deta Space** - Unlimited free serverless hosting
+
+Note: User rejected Render due to payment requirements. Back4App lacks GitHub integration. User frustrated with repeated suggestions of paid platforms.
+
+### Technical Implementation
+- Fixed asset path issues (moved attached_assets to correct location)
+- Database initialization working properly
+- All API endpoints functional
+- User authentication system working (default: Siti Aminah/112233)
+- Admin dashboard accessible (code: 011090)
+
+### Database Configuration
+- **Provider**: Neon Database (Serverless PostgreSQL)
+- **Host**: ep-nameless-salad-a2ttl0km.eu-central-1.aws.neon.tech
+- **Database**: neondb
+- **Region**: EU Central (Frankfurt)
+- **Status**: Active with existing user data (Siti Aminah, Deden)
+- **Ready for deployment**: Connection string available for all platforms

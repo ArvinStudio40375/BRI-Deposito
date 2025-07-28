@@ -1,0 +1,16 @@
+name: deposit-bri-app
+services:
+  - name: web
+    git:
+      branch: main
+    instance_types:
+      - type: nano
+    ports:
+      - port: 5000
+        protocol: http
+    env:
+      - key: NODE_ENV
+        value: production
+    build:
+      buildpack: nodejs
+    run_command: npm run start
